@@ -25,15 +25,17 @@ class PloneContentXBlock(XBlock):
         help="Dieser Name erscheint im Kopf des Dokuments im Kursinhalt.")
 
     url = String(display_name="Content-URL",
-        default="http://plone-site/path/path",
+        default="http://www.educorvi.de/xblock-testseite",
         scope=Scope.content,
         help="Die Webadresse des Plone-Contents.")
 
     username = String(display_name="Benutzername",
+            default="",
             scope=Scope.content,
             help=u"Falls eine Anmeldung erforderlich ist können Sie hier den Benutzernamen eintragen.")
 
     password = String(display_name="Passwort",
+            default="",
             scope=Scope.content,
             help=u"Falls eine Anmeldung erforderlich ist können Sie hier das Passwort eintragen.")
 
