@@ -1,0 +1,49 @@
+<div class="wrapper-comp-settings editor-with-buttons is-active" id="settings-tab">
+    <ul class="list-input settings-list">
+        
+        <li class="field comp-setting-entry is-set">
+            <div class="wrapper-comp-setting">
+                <label class="label setting-label" for="plonecontent_edit_display_name">Display Name</label>
+                <input class="input setting-input" id="plonecontent_edit_display_name" value="{{ display_name }}" type="text">
+            </div>
+            <span class="tip setting-help">Dieser Name erscheint im Kopf der Lerneinheit.</span>
+        </li>
+
+        <li class="field comp-setting-entry is-set">
+            <div class="wrapper-comp-setting">
+                <label class="label setting-label" for="plonecontent_edit_url">Content-URL</label>
+                <input class="input setting-input" id="plonecontent_edit_url" value="{{ url }}" type="text">
+            </div>
+            <span class="tip setting-help">Bitte kopieren Sie die URL (Webadresse) des Inhalts in dieses Feld.</span>
+        </li>
+
+        <li class="field comp-setting-entry is-set">
+            <div class="wrapper-comp-setting">
+                <label class="label setting-label" for="plonecontent_edit_username">Benutzername</label>
+                <input class="input setting-input" id="plonecontent_edit_username" value="{{ username }}" type="text">
+            </div>
+            <span class="tip setting-help">Optional: Bitte geben Sie hier den Benutzernamen ein falls eine Anmeldung erforderlich ist.</span>
+        </li>
+
+        <li class="field comp-setting-entry is-set">
+            <div class="wrapper-comp-setting">
+                <label class="label setting-label" for="plonecontent_edit_password">Passwort</label>
+                <input class="input setting-input" id="plonecontent_edit_password" value="{{ password }}" type="text">
+            </div>
+            <span class="tip setting-help">Optional: Bitte geben Sie hier das Passwort ein falls eine Anmeldung erforderlich ist.</span>
+        </li>
+    </ul>
+
+    <div class="xblock-actions">
+        <ul>
+            <li class="action-item">
+                <a href="#" class="button action-primary action-save">Save</a>
+            </li>
+            <li class="action-item">
+                <a href="#" class="button action-cancel">Cancel</a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+

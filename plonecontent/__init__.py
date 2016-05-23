@@ -1,0 +1,1 @@
+from .plonecontent import PloneContentXBlock

@@ -1,0 +1,9 @@
+/* CSS for PloneContentXBlock */
+
+.plonecontent_block .count {
+    font-weight: bold;
+}
+
+.plonecontent_block p {
+    cursor: pointer;
+}

@@ -1,0 +1,12 @@
+plonecontent/__init__.py
+plonecontent/plonecontent.py
+plonecontent/static/README.txt
+plonecontent/static/css/plonecontent.css
+plonecontent/static/html/plonecontent.html
+plonecontent/static/js/src/plonecontent.js
+plonecontent_xblock.egg-info/PKG-INFO
+plonecontent_xblock.egg-info/SOURCES.txt
+plonecontent_xblock.egg-info/dependency_links.txt
+plonecontent_xblock.egg-info/entry_points.txt
+plonecontent_xblock.egg-info/requires.txt
+plonecontent_xblock.egg-info/top_level.txt
