@@ -106,10 +106,9 @@ class PloneContentXBlock(XBlock):
             'password': self.password,
             }
         html = self.render_template('static/html/plonecontent_edit.html', context)
-        frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/plonecontent.css"))
-        frag.add_javascript(self.resource_string("static/js/src/plonecontent_edit.js"))
-        frag.initialize_js('PloneContentXBlock')
+        frag = Fragment(html)
+        frag.add_javascript(self.load_resource("static/js/src/plonecontent_edit.js"))
+        frag.initialize_js('plonecontentXBlockInitStudio')
         return frag
 
     # TO-DO: change this handler to perform your own actions.  You may need more

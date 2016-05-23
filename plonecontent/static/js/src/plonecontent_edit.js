@@ -13,5 +13,16 @@ function plonecontentXBlockInitStudio(runtime, element) {
         };  
         
         runtime.notify('save', {state: 'start'});
+
+        var handlerUrl = runtime.handlerUrl(element, 'save_plonecontent');
+        $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
+            if (response.result === 'success') {
+                runtime.notify('save', {state: 'end'});
+                // Reload the whole page :
+                // window.location.reload(false);
+            } else {
+                runtime.notify('error', {msg: response.message})
+            }   
+         });
     }); 
 } 
