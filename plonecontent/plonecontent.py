@@ -108,7 +108,7 @@ class PloneContentXBlock(XBlock):
         html = self.render_template('static/html/plonecontent_edit.html', context)
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/plonecontent.css"))
-        frag.add_javascript(self.resource_string("static/js/src/plonecontent.js"))
+        frag.add_javascript(self.resource_string("static/js/src/plonecontent_edit.js"))
         frag.initialize_js('PloneContentXBlock')
         return frag
 
