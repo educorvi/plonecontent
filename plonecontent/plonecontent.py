@@ -64,7 +64,7 @@ class PloneContentXBlock(XBlock):
     def format_plonedocument(self, data):
         context = {}
         context['title'] = data['title']
-        context['description'] = data['description']
+        context['description'] = data['description']['data']
         context['text'] = data['text']['data']
         mytemplate = "static/html/plonedocument.html"
         return (context, mytemplate)
