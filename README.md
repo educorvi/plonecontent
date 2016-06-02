@@ -32,13 +32,15 @@ sudo -u edxapp git clone https://github.com/educorvi/plonecontent.git
 sudo -u edxapp /edx/bin/pip.edxapp install plonecontent/
 
 **Remove the installation files**
+
 sudo rm -r plonecontent
 
-Hinweis:
-Maybe the edxapp User has not enough rights to install the XBlock Requirement "restclient" and your got a error during the installation process. I recommend to install the restclient package with your Installation-User (maybe vagrant) or with superuser privileges:
-sudo /edx/bin/pip.edxapp restclient
+..note::
 
-Within your course:
+   Maybe the edxapp User has not enough rights to install the XBlock Requirement "restclient" and your got a error during the installation process. I recommend to install the restclient package with your Installation-User (maybe vagrant) or with superuser privileges:
+   sudo /edx/bin/pip.edxapp restclient
+
+**Within your course:**
 
 Goto Settings --> Advanded Settings and modify the "Advanced Module List": ["plonecontent",]
 
