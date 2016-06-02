@@ -19,13 +19,13 @@ plone.restapi (https://github.com/plone/plone.restapi)
 Installation
 ------------
 
-#Move to the folder where you want to download the plonecontent XBlock
+*Move to the folder where you want to download the plonecontent XBlock*
 cd /edx/app/edxapp
-#Download the XBlock
+*Download the XBlock*
 sudo -u edxapp git clone https://github.com/educorvi/plonecontent.git
-#If not installed: Install the XBlock
+*If not installed: Install the XBlock*
 sudo -u edxapp /edx/bin/pip.edxapp install plonecontent/
-#Remove the installation files
+*Remove the installation files*
 sudo rm -r plonecontent
 
 Hinweis:
