@@ -61,12 +61,49 @@ class PloneContentXBlock(XBlock):
 
     # TO-DO: change this view to display your data your own way.
 
+    def read_data_from_api(self, myurl):
+        if self.username and self.password:
+            myresponse = GET(myurl, accept=['application/json'], credentials=(self.username, self.password))
+        else:
+            myresponse = GET(myurl, accept=['application/json'])
+        return json.loads(myresponse)
+
     def format_plonedocument(self, data):
         context = {}
         context['title'] = data['title']
-        context['description'] = data['description']['data']
-        context['text'] = data['text']['data']
+        context['description'] = data['description']
+        context['text'] = data['text']
         mytemplate = "static/html/plonedocument.html"
+        return (context, mytemplate)
+
+    def extract_subolder(self, folder):
+        data = self.read_data_from_api(folder['@id'])
+        subfolders = []
+        for i in data['items']
+            folderobj = {}
+            folderobj['title'] = i['title']
+            folderobj['description'] = i['description']
+            folderobj['text'] = i.get('text', '')
+            subfolders.append(folderobj)
+        return subfolders
+
+    def format_plonefolder(self, data):
+        context = {}
+        context['title'] = data['title']
+        context['description'] = data['description']
+        context['text'] = data.get('text', '')
+        itemlist = []
+        for i in context['items']:
+            obj = {}
+            obj['title'] = i['title']
+            obj['description'] = i['description']
+            obj['text'] = i.get('text', '')
+            obj['subobjects'] = []
+            if i['@type'] == 'Folder':
+                obj['subobjects'] = self.extract_subfolder(i)
+            itemlist.append(obj)
+        context['itemlist'] = itemlist
+        mytemplate = "static/html/plonefolder.html"
         return (context, mytemplate)
 
     def student_view(self, context=None):
@@ -74,13 +111,11 @@ class PloneContentXBlock(XBlock):
         The primary view of the PloneContentXBlock, shown to students
         when viewing courses.
         """
-        if self.username and self.password:
-            myresponse = GET(self.url, accept=['application/json'], credentials=(self.username, self.password))
-        else:
-            myresponse = GET(self.url, accept=['application/json'])
-        data = json.loads(myresponse)
-        if data['@type'] == "Document":
+        data = self.read_data_from_api(self.url)
+        if data['@type'] in ["Document", "NewsItem"]:
             context, mytemplate = self.format_plonedocument(data)
+        if data['@type'] == "Folder":
+            context, mytemplate = self.format_plonefolder(data)
         else:
             context = {'title':data.get('title'),
                        'description':data.get('description'),

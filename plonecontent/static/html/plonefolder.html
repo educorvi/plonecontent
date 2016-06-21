@@ -1,0 +1,21 @@
+<div class="plonefolder_block">
+  <h2>{{ title }}</h2>
+  <p>{{ description }}</p>
+  {% if text %}
+    {{ text|safe }}
+  {% endif %}
+  {% for item in itemlist %}
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.description }}</p>
+      {% if item.text %}
+          {{ item.text|safe }}
+      {% endif }
+      {% for sub in item.subobjects %}
+          <h4>{{ sub.title }}</h4>
+          <p>{{ sub.description }}</p>
+          {% if sub.text %}
+              {{ sub.text|safe }}
+          {% endif}
+      {% endfor %}
+  {% endfor %}
+</div>
