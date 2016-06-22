@@ -9,13 +9,13 @@
       <p>{{ item.description }}</p>
       {% if item.text %}
           {{ item.text|safe }}
-      {% endif }
+      {% endif %}
       {% for sub in item.subobjects %}
           <h4>{{ sub.title }}</h4>
           <p>{{ sub.description }}</p>
           {% if sub.text %}
               {{ sub.text|safe }}
-          {% endif}
+          {% endif %}
       {% endfor %}
   {% endfor %}
 </div>

@@ -71,33 +71,42 @@ class PloneContentXBlock(XBlock):
     def format_plonedocument(self, data):
         context = {}
         context['title'] = data['title']
-        context['description'] = data['description']
-        context['text'] = data['text']
+        context['description'] = data['description']['data']
+        context['text'] = data['text']['data']
         mytemplate = "static/html/plonedocument.html"
         return (context, mytemplate)
 
-    def extract_subolder(self, folder):
+    def extract_subfolder(self, folder):
         data = self.read_data_from_api(folder['@id'])
         subfolders = []
-        for i in data['items']
+        for i in data['items']:
             folderobj = {}
             folderobj['title'] = i['title']
             folderobj['description'] = i['description']
-            folderobj['text'] = i.get('text', '')
+            folderobj['text'] = ''
+            text = i.get('text', '')
+            if text:
+                folderobj['text'] = text['data']
             subfolders.append(folderobj)
         return subfolders
 
     def format_plonefolder(self, data):
         context = {}
         context['title'] = data['title']
-        context['description'] = data['description']
-        context['text'] = data.get('text', '')
+        context['description'] = data['description']['data']
+        context['text'] = ''
+        text = data.get('text', '')
+        if text:
+            context['text'] = text['data']
         itemlist = []
-        for i in context['items']:
+        for i in data['items']:
             obj = {}
             obj['title'] = i['title']
             obj['description'] = i['description']
-            obj['text'] = i.get('text', '')
+            obj['text'] = ''
+            text = i.get('text', '')
+            if text:
+                obj['text'] = text['data']
             obj['subobjects'] = []
             if i['@type'] == 'Folder':
                 obj['subobjects'] = self.extract_subfolder(i)
@@ -114,11 +123,11 @@ class PloneContentXBlock(XBlock):
         data = self.read_data_from_api(self.url)
         if data['@type'] in ["Document", "NewsItem"]:
             context, mytemplate = self.format_plonedocument(data)
-        if data['@type'] == "Folder":
+        elif data['@type'] == "Folder":
             context, mytemplate = self.format_plonefolder(data)
         else:
-            context = {'title':data.get('title'),
-                       'description':data.get('description'),
+            context = {'title':data['title'],
+                       'description':data['description']['data'],
                        'display_name':self.display_name,
                        'url':self.url}
             mytemplate = "static/html/plonecontent.html"
