@@ -31,6 +31,7 @@ setup(
     install_requires=[
         'XBlock',
         'restclient',
+        'beautifulsoup4',
     ],
     entry_points={
         'xblock.v1': [

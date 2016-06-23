@@ -4,6 +4,7 @@ import json
 
 from django.template import Context, Template
 from restclient import GET
+from bs4 import BeautifulSoup
 
 from xblock.core import XBlock
 from xblock.fields import Scope, Integer, String
@@ -72,7 +73,14 @@ class PloneContentXBlock(XBlock):
         context = {}
         context['title'] = data['title']
         context['description'] = data['description']['data']
-        context['text'] = data['text']['data']
+        text = data['text']['data']
+        soup = BeautifulSoup(text, "html.parser")
+        images = soup.findAll('img')
+        for i in images:
+            oldurl = i.get('src')
+            newurl = '%s/%s' % (mydict['parent']['@id'], oldurl)
+            text = text.replace(oldurl, newurl)
+        context['text'] text
         mytemplate = "static/html/plonedocument.html"
         return (context, mytemplate)
 
