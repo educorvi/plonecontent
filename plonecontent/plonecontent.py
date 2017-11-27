@@ -73,14 +73,7 @@ class PloneContentXBlock(XBlock):
         context = {}
         context['title'] = data.get('title')
         context['description'] = data.get('description')
-        text = data['text']['data']
-        soup = BeautifulSoup(text, "html.parser")
-        images = soup.findAll('img')
-        for i in images:
-            oldurl = i.get('src')
-            newurl = '%s/%s' % (mydict['parent']['@id'], oldurl)
-            text = text.replace(oldurl, newurl)
-        context['text'] = text
+        context['text'] = data.get('text', {}).get('data')
         mytemplate = "static/html/plonedocument.html"
         return (context, mytemplate)
 
